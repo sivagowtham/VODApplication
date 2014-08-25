@@ -1,0 +1,47 @@
+package edu.utdallas.videoOnDemand.services;
+
+
+import java.util.List;
+
+import edu.utdallas.videoOnDemand.transactionSvc.TransactionDTO;
+
+/**
+ * @author Amber Gullatte;
+ * @date 6/29/2014;
+ * @version 1;
+ * @job TransactionService;
+ */
+
+public interface TransactionService
+{
+	/*
+	 * insert Rental into Rented_Movies
+	 * insert transaction into Transactions
+	 * */
+	void rentMovie(Long movieID) throws ServiceException;
+	/*
+	 * insert Rental into Rented_Movies
+	 * insert transaction into Transactions
+	 * */
+	void purchaseMovie(Long movieID) throws ServiceException;
+	
+	/*
+	 * retrieveAll transaction history for a user
+	 * */
+	List<TransactionDTO> retrieveAllHistory(TransactionDTO transDTO) throws ServiceException;
+	
+	/*
+	 * retrieve all rental history for a user
+	 * */
+	List<TransactionDTO> retrieveRentalHistory(TransactionDTO transDTO) throws ServiceException;
+	
+	/*
+	 * retrieve all purchase history for a user
+	 * */
+	List<TransactionDTO> retrievePurchaseHistory(TransactionDTO transDTO) throws ServiceException;
+	
+	int getMovieDaysLeft(Long movieID) throws ServiceException;
+	void rentMovie(TransactionDTO transDTO) throws ServiceException;
+	void purchaseMovie(TransactionDTO transDTO) throws ServiceException;
+	
+}

@@ -1,0 +1,38 @@
+package edu.utdallas.videoOnDemand.CategorySvc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.utdallas.videoOnDemand.CategorySvc.CategoryDTO;
+import edu.utdallas.videoOnDemand.entities.Category;
+import edu.utdallas.videoOnDemand.services.ServiceException;
+
+/**
+ * @author Amber Gullatte;
+ * @date 07/22/2014;
+ * @version 1;
+ * @job CategoryDTOValidator;
+ */
+
+public class CategoryDTOValidator {
+	static public Category convert(CategoryDTO categoryDTO)
+			throws ServiceException {
+		
+		Category category = new Category();
+
+		category.setCategoryID(categoryDTO.getCategoryID());
+		category.setTitle(categoryDTO.getTitle());
+
+		return category;
+	}
+
+	static public List<CategoryDTO> covertToDTO(
+			List<Category> categories) {
+		List<CategoryDTO> results = new ArrayList<CategoryDTO>();
+		for (Category category : categories) {
+			CategoryDTO categoryDTO = new CategoryDTO(category);
+			results.add(categoryDTO);
+		}
+		return results;
+	}
+}

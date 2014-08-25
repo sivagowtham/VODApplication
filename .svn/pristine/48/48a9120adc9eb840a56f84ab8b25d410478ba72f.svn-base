@@ -1,0 +1,11 @@
+
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('X-Men: Days of Future Past', 'tt1877832', 'Action', 24, 1.99, 19.99,'01.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Blended', 'tt1086772', 'Comedy', 24, 1.99, 19.99,'02.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Amazing Spiderman 2', 'tt3720452', 'Comedy', 24, 1.99, 19.99,'03.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Godzilla', 'tt1628040', 'Action', 24, 1.99, 19.99,'04.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Captain America: The Winter Soldier', 'tt1843866', 'Action', 24, 1.99, 19.99,'05.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Gods Not Dead', 'tt2528814', 'Drama', 24, 1.99, 19.99,'06.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Transcendence', 'tt2209764', 'Drama', 24, 1.99, 19.99,'07.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Neighbors', 'tt2004420', 'Comedy', 24, 1.99, 19.99,'08.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('The Raid 2', 'tt2265171', 'Action', 24, 1.99, 19.99,'09.jpg','Y', CURRENT_DATE);
+insert into TBL_MOVIES (title, imdb_id, category, rent_time, rent_amount, purchase_amount, movie_poster, is_visible, added_on) values ('Sabotage', 'tt0028212', 'Mystery', 24, 0.99, 9.99,'10.jpg','Y', CURRENT_DATE);

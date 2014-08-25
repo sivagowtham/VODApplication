@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Video on Demand</title>
+<link href="css/VOD.css" rel="stylesheet" type="text/css">
+<link href="css/menu.css" rel="stylesheet" type="text/css">
+<link href="css/ccvalidate.css" rel="stylesheet" type="text/css">
+<link href="css/popModal.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="js/ccvalidate.js"></script>
+<script src="js/popModal.js"></script>
+
+<script type='text/javascript' src="dwr/engine.js"></script>
+<script type='text/javascript' src="dwr/util.js"></script>
+<script type='text/javascript'
+	src="dwr/interface/UserManagementService.js"></script>
+<script type='text/javascript'
+	src="dwr/interface/MovieManagementService.js"></script>
+</head>
+<!-- Common Kendo UI Web CSS -->
+<link href="css/kendo/kendo.common.min.css" rel="stylesheet" />
+<!-- Default Kendo UI Web theme CSS -->
+<link href="css/kendo/kendo.default.min.css" rel="stylesheet" />
+<!-- jQuery JavaScript -->
+<script src="js/kendo/jquery.min.js"></script>
+<!-- Kendo UI Web combined JavaScript -->
+<script src="js/kendo/kendo.web.min.js"></script>
+<script type="text/javascript">
+	var movieInfo = [];
+	$(function() {
+		MovieManagementService.retrieveAllMovies(displayMovies);
+		UserManagementService.authenticate(authenticateCallback);
+		UserManagementService.retrieveUserInfo(displayUserName);
+	});
+	function authenticateCallback(success) {
+		if (success == false) {
+			window.location.href = "index.html";
+		} else {
+			UserManagementService.retrieveUserInfo(getUser);
+		}
+	}
+
+	function getUser(user) {
+		if (user) {
+			UserManagementService.isAdmin(user.username, isAdminCallback);
+		}
+	}
+
+	function isAdminCallback(success) {
+		if (success == false) {
+			window.location.href = "home.html";
+		}
+	}
+	function displayUserName(user) {
+		if (user) {
+			$("#username").html(user.username);
+		}
+	}
+
+	function logoutUser() {
+		UserManagementService.logout(logoutCallback);
+	}
+
+	function logoutCallback(success) {
+		if (success == true) {
+			window.location.href = "index.html";
+		} else {
+			$('#notify').html("Unable to logout user!!!");
+			$('#notify').notifyModal({
+				duration : 5500,
+				placement : 'center',
+				overlay : true
+			});
+		}
+	}
+
+	function displayMovies(movies) {
+		for (var i = 0, size = movies.length; i < size; i++) {
+			var movie = movies[i];
+			movieInfo[movieInfo.length] = {
+				movieId : movie.movieId,
+				title : movie.title,
+				isVisible : movie.isVisible
+			};
+		}
+		$("#grid").kendoGrid({
+			scrollable : true,
+			sortable : true,
+			pageable : {pageSize : 5},
+			columns : [ {
+				title : "Movie ID",
+				field : "movieId"
+			}, {
+				title : "Movie Title",
+				field : "title"
+			}, {
+				title : "Is Visible",
+				field : "isVisible"
+			} ],
+			dataSource : movieInfo
+		});
+	}
+
+	function submitMovie() {
+		var movieInfo = {
+			title : $("#movieTitle").val(),
+			imdbId : $("#imdbID").val(),
+			videoURL : $("#mpegFileName").val()
+		};
+		MovieManagementService.addMovie(movieInfo);
+		location.reload();
+	}
+	function pageReload() {
+		location.reload();
+	}
+	function removeMovie() {
+		var movieInfo = {
+			movieId : $("#removeMovieID").val()
+		};
+		MovieManagementService.removeMovie(movieInfo);
+		location.reload();
+	}
+	function showMovie() {
+		var movieInfo = {
+			movieId : $("#removeMovieID").val()
+		};
+		MovieManagementService.showMovie(movieInfo);
+		location.reload();
+	}
+	function hideMovie() {
+		var movieInfo = {
+			movieId : $("#removeMovieID").val()
+		};
+		MovieManagementService.hideMovie(movieInfo);
+		location.reload();
+	}
+
+	function errHandler(errorText, ex) {
+		if (errorText == null || errorText == '') {
+			errorText = ex.javaClassName;
+		}
+		alert(errorText);
+	}
+</script>
+
+
+
+
+<body>
+	<div id="headerBar">
+		<header class="bars">
+			<div class="container">
+
+				<a title="Videos On Demand" href="index.html">
+					<div id="fsLogo"></div>
+				</a>
+				<div
+					style="float: right; display: block; margin-top: 5px; font-size: 11px; color: #fff;">
+					Logged in as: <a id="username" style="cursor: pointer;"
+						href="profile.html"></a>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div id='topHeadermenu'>
+		<ul>
+			<li class='has-sub'><a href='adminConsole.html'><span>HOME</span></a></li>
+			<li><a href='adminAddNewAdmin.html'><span>ADD
+						ADMIN</span></a></li>
+			<li><a href='adminAddOrRemoveMovie.html'><span>UPDATE
+						MOVIES</span></a></li>
+			<li><a href='adminUpdateUserInformation.html'><span>UPDATE
+						USERS</span></a></li>
+			<li><a onclick="logoutUser()"><span>LOG OUT</span></a></li>
+		</ul>
+
+	</div>
+	<div class="mainContainer" style="height: 700px;">
+		<div id="notify" style="display: none">Notification</div>
+		<div class="containerHeader">
+			<div>
+				Update <span>Movies</span>
+			</div>
+		</div>
+		<br>
+
+		<div class="signup">
+			<input type="text" id="movieTitle" name="movieTitle"
+				placeholder="Movie Title"> <br> <input type="text"
+				id="imdbID" name="imdbID" placeholder="IMDB ID"> <br> <input
+				type="text" id="mpegFileName" name="mpegFileName"
+				placeholder="MPEG File Name">
+			<tr>
+				<td colspan="2"><br> <br>
+					<button onclick="submitMovie()" type="button">Add Movie</button></td>
+			</tr>
+			<br> <br> <input type="text" id="removeMovieID"
+				name="removeMovieID" placeholder="Movie ID">
+			<tr>
+				<td colspan="1"><br> <br>
+					<button onclick="removeMovie()" type="button">Remove Movie</button></td>
+				<td colspan="1">
+					<button onclick="showMovie()" type="button">Show Movie</button>
+				</td>
+				<td colspan="1">
+					<button onclick="hideMovie()" type="button">Hide Movie</button>
+				</td>
+			</tr>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<table id="grid"></table>
+	</div>
+
+	<div class="footer">
+		<ul id="footerLinksList">
+			<li>© 2014 &nbsp;Videos On Demand. All Rights Reserved</li>
+			<li>|</li>
+			<li><a href="contactus.html">Contact Us</a></li>
+		</ul>
+
+	</div>
+
+</body>
+</html>

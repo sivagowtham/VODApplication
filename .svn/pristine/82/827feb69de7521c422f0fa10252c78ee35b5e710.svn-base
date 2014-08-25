@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Video on Demand - History</title>
+<link href="css/VOD.css" rel="stylesheet" type="text/css">
+<link href="css/menu.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+	<div id="headerBar">
+		<header class="bars">
+			<div class="container">
+
+				<a title="Videos On Demand" href="index.html">
+					<div id="fsLogo"></div>
+				</a>
+				<form id="formSearch" method="POST" action="search.html">
+					<div id="search">
+						<input class="input_search" type="text" placeholder="Search..."
+							value="" name="q"> <select class="choice" name="s">
+							<option value="t">Title</option>
+							<option value="a">Actor</option>
+							<option value="d">Director</option>
+						</select>
+						<button type="submit">Search</button>
+					</div>
+				</form>
+
+
+
+			</div>
+		</header>
+	</div>
+	<div id='topHeadermenu'>
+		<ul>
+			<li class='has-sub'><a href='home.html'><span>HOME</span></a></li>
+			<li><a href='profile.html'><span>PROFILE</span></a></li>
+			<li><a href='favorites.html'><span>FAVORITES</span></a></li>
+			<li><a href='history.html'><span>HISTORY</span></a></li>
+			<li><a href='recommendations.html'><span>RECOMMENDATIONS</span></a></li>
+			<li><a href='index.html'><span>LOG OUT</span></a></li>
+		</ul>
+
+	</div>
+
+	<div class="mainContainer" style="height: auto; padding-bottom: 20px;">
+
+		<div class="caption">
+			<div>
+				Watch <span>History</span>
+			</div>
+		</div>
+
+		<div class="content">
+			<ul id="listMovies">
+				<li style="background: none; box-shadow: none;"><div
+						class="caption" style="width: 300px;">
+						<div style="font-size: 18px;">
+							To be <span>Implemented</span>
+						</div>
+					</div></li>
+			</ul>
+		</div>
+
+
+	</div>
+
+	<div class="footer">
+		<ul id="footerLinksList">
+			<li>© 2014 &nbsp;Videos On Demand. All Rights Reserved</li>
+			<li>|</li>
+			<li><a href="contactus.html">Contact Us</a></li>
+		</ul>
+
+	</div>
+
+
+</body>
+</html>
+

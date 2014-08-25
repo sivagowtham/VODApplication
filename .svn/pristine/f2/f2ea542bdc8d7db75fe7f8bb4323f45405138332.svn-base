@@ -1,0 +1,27 @@
+package edu.utdallas.videoOnDemand.services;
+
+import java.util.List;
+
+import edu.utdallas.videoOnDemand.userManagementSvc.UserDTO;
+import edu.utdallas.videoOnDemand.movieManagementSvc.*;
+
+
+public interface AdminManagementService {
+	/**
+	 * @author : Mahalakshmi Balasubramanian;
+	 * @date 7/3/2014;
+	 * @version 1;
+	 * @job AdminManagementService;
+	 */
+List<UserDTO> viewUserReport(UserDTO userDTO) throws ServiceException;  
+//return user IDs, user names, num of movies purchased, num of movies rented, timeframe
+
+
+List<MovieDTO> viewMovieReport(MovieDTO movieDTO) throws ServiceException;
+// return a report table containing movieIDs, titles, average ratings, num of times rented, timeframe 
+
+//select COUNT(rented_on) AS numTimesRented 
+//FROM tbl_movie_rented 
+//WHERE movie_id = fsfdg
+
+}
